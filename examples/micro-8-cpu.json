@@ -1,0 +1,1218 @@
+{
+  "version": 1,
+  "name": "MICRO-8 circuit CPU",
+  "architecture": {
+    "version": 1,
+    "name": "MICRO-8",
+    "data_bits": 8,
+    "address_bits": 8,
+    "registers": 4,
+    "instruction_bytes": 2,
+    "endian": "little",
+    "entry": 0,
+    "stack": null,
+    "console": null,
+    "instructions": [
+      {
+        "mnemonic": "HALT",
+        "op": "halt",
+        "opcode": 0,
+        "mask": 65535,
+        "fields": [],
+        "update_flags": false
+      },
+      {
+        "mnemonic": "NOP",
+        "op": "nop",
+        "opcode": 2048,
+        "mask": 65535,
+        "fields": [],
+        "update_flags": false
+      },
+      {
+        "mnemonic": "MOV",
+        "op": "mov",
+        "opcode": 4096,
+        "mask": 63615,
+        "fields": [
+          {
+            "lsb": 9,
+            "bits": 2,
+            "kind": "register"
+          },
+          {
+            "lsb": 7,
+            "bits": 2,
+            "kind": "register"
+          }
+        ],
+        "update_flags": false
+      },
+      {
+        "mnemonic": "SET",
+        "op": "imm",
+        "opcode": 6144,
+        "mask": 63488,
+        "fields": [
+          {
+            "lsb": 9,
+            "bits": 2,
+            "kind": "register"
+          },
+          {
+            "lsb": 0,
+            "bits": 9,
+            "kind": "unsigned"
+          }
+        ],
+        "update_flags": false
+      },
+      {
+        "mnemonic": "ADD",
+        "op": "add",
+        "opcode": 8192,
+        "mask": 63615,
+        "fields": [
+          {
+            "lsb": 9,
+            "bits": 2,
+            "kind": "register"
+          },
+          {
+            "lsb": 7,
+            "bits": 2,
+            "kind": "register"
+          }
+        ],
+        "update_flags": true
+      },
+      {
+        "mnemonic": "SUB",
+        "op": "sub",
+        "opcode": 10240,
+        "mask": 63615,
+        "fields": [
+          {
+            "lsb": 9,
+            "bits": 2,
+            "kind": "register"
+          },
+          {
+            "lsb": 7,
+            "bits": 2,
+            "kind": "register"
+          }
+        ],
+        "update_flags": true
+      },
+      {
+        "mnemonic": "AND",
+        "op": "and",
+        "opcode": 12288,
+        "mask": 63615,
+        "fields": [
+          {
+            "lsb": 9,
+            "bits": 2,
+            "kind": "register"
+          },
+          {
+            "lsb": 7,
+            "bits": 2,
+            "kind": "register"
+          }
+        ],
+        "update_flags": true
+      },
+      {
+        "mnemonic": "OR",
+        "op": "or",
+        "opcode": 14336,
+        "mask": 63615,
+        "fields": [
+          {
+            "lsb": 9,
+            "bits": 2,
+            "kind": "register"
+          },
+          {
+            "lsb": 7,
+            "bits": 2,
+            "kind": "register"
+          }
+        ],
+        "update_flags": true
+      },
+      {
+        "mnemonic": "XOR",
+        "op": "xor",
+        "opcode": 16384,
+        "mask": 63615,
+        "fields": [
+          {
+            "lsb": 9,
+            "bits": 2,
+            "kind": "register"
+          },
+          {
+            "lsb": 7,
+            "bits": 2,
+            "kind": "register"
+          }
+        ],
+        "update_flags": true
+      },
+      {
+        "mnemonic": "SHL",
+        "op": "shl",
+        "opcode": 18432,
+        "mask": 63615,
+        "fields": [
+          {
+            "lsb": 9,
+            "bits": 2,
+            "kind": "register"
+          },
+          {
+            "lsb": 7,
+            "bits": 2,
+            "kind": "register"
+          }
+        ],
+        "update_flags": true
+      },
+      {
+        "mnemonic": "SHR",
+        "op": "shr",
+        "opcode": 20480,
+        "mask": 63615,
+        "fields": [
+          {
+            "lsb": 9,
+            "bits": 2,
+            "kind": "register"
+          },
+          {
+            "lsb": 7,
+            "bits": 2,
+            "kind": "register"
+          }
+        ],
+        "update_flags": true
+      },
+      {
+        "mnemonic": "CMP",
+        "op": "cmp",
+        "opcode": 22528,
+        "mask": 63615,
+        "fields": [
+          {
+            "lsb": 9,
+            "bits": 2,
+            "kind": "register"
+          },
+          {
+            "lsb": 7,
+            "bits": 2,
+            "kind": "register"
+          }
+        ],
+        "update_flags": true
+      },
+      {
+        "mnemonic": "LD",
+        "op": "load",
+        "opcode": 24576,
+        "mask": 63488,
+        "fields": [
+          {
+            "lsb": 9,
+            "bits": 2,
+            "kind": "register"
+          },
+          {
+            "lsb": 0,
+            "bits": 9,
+            "kind": "unsigned"
+          }
+        ],
+        "update_flags": false
+      },
+      {
+        "mnemonic": "ST",
+        "op": "store",
+        "opcode": 26624,
+        "mask": 63488,
+        "fields": [
+          {
+            "lsb": 9,
+            "bits": 2,
+            "kind": "register"
+          },
+          {
+            "lsb": 0,
+            "bits": 9,
+            "kind": "unsigned"
+          }
+        ],
+        "update_flags": false
+      },
+      {
+        "mnemonic": "LDR",
+        "op": "load_indirect",
+        "opcode": 28672,
+        "mask": 63615,
+        "fields": [
+          {
+            "lsb": 9,
+            "bits": 2,
+            "kind": "register"
+          },
+          {
+            "lsb": 7,
+            "bits": 2,
+            "kind": "register"
+          }
+        ],
+        "update_flags": false
+      },
+      {
+        "mnemonic": "STR",
+        "op": "store_indirect",
+        "opcode": 30720,
+        "mask": 63615,
+        "fields": [
+          {
+            "lsb": 9,
+            "bits": 2,
+            "kind": "register"
+          },
+          {
+            "lsb": 7,
+            "bits": 2,
+            "kind": "register"
+          }
+        ],
+        "update_flags": false
+      },
+      {
+        "mnemonic": "JMP",
+        "op": "jump",
+        "opcode": 32768,
+        "mask": 63488,
+        "fields": [
+          {
+            "lsb": 0,
+            "bits": 11,
+            "kind": "unsigned"
+          }
+        ],
+        "update_flags": false
+      },
+      {
+        "mnemonic": "JZ",
+        "op": "jz",
+        "opcode": 34816,
+        "mask": 63488,
+        "fields": [
+          {
+            "lsb": 0,
+            "bits": 11,
+            "kind": "unsigned"
+          }
+        ],
+        "update_flags": false
+      },
+      {
+        "mnemonic": "JNZ",
+        "op": "jnz",
+        "opcode": 36864,
+        "mask": 63488,
+        "fields": [
+          {
+            "lsb": 0,
+            "bits": 11,
+            "kind": "unsigned"
+          }
+        ],
+        "update_flags": false
+      },
+      {
+        "mnemonic": "JC",
+        "op": "jcarry",
+        "opcode": 38912,
+        "mask": 63488,
+        "fields": [
+          {
+            "lsb": 0,
+            "bits": 11,
+            "kind": "unsigned"
+          }
+        ],
+        "update_flags": false
+      }
+    ]
+  },
+  "source": "; The same two-byte encoding feeds both execution engines.\nSET r0, 250\nSET r1, 15\nADD r0, r1\nADD r1, r0\nSET r2, 0\nADD r2, r2\nHALT\n",
+  "circuit": {
+    "version": 1,
+    "nodes": [
+      {
+        "name": "clock",
+        "width": 1,
+        "component": {
+          "kind": "clock",
+          "period": 2
+        },
+        "inputs": [],
+        "x": 40,
+        "y": 35
+      },
+      {
+        "name": "pc",
+        "width": 8,
+        "component": {
+          "kind": "register",
+          "initial": 0
+        },
+        "inputs": [
+          30,
+          0
+        ],
+        "x": 40,
+        "y": 123
+      },
+      {
+        "name": "r0",
+        "width": 8,
+        "component": {
+          "kind": "register",
+          "initial": 0
+        },
+        "inputs": [
+          52,
+          0
+        ],
+        "x": 40,
+        "y": 211
+      },
+      {
+        "name": "r1",
+        "width": 8,
+        "component": {
+          "kind": "register",
+          "initial": 0
+        },
+        "inputs": [
+          56,
+          0
+        ],
+        "x": 40,
+        "y": 299
+      },
+      {
+        "name": "r2",
+        "width": 8,
+        "component": {
+          "kind": "register",
+          "initial": 0
+        },
+        "inputs": [
+          60,
+          0
+        ],
+        "x": 40,
+        "y": 387
+      },
+      {
+        "name": "r3",
+        "width": 8,
+        "component": {
+          "kind": "register",
+          "initial": 0
+        },
+        "inputs": [
+          64,
+          0
+        ],
+        "x": 40,
+        "y": 475
+      },
+      {
+        "name": "halted",
+        "width": 1,
+        "component": {
+          "kind": "register",
+          "initial": 0
+        },
+        "inputs": [
+          27,
+          0
+        ],
+        "x": 40,
+        "y": 563
+      },
+      {
+        "name": "zero",
+        "width": 1,
+        "component": {
+          "kind": "register",
+          "initial": 0
+        },
+        "inputs": [
+          45,
+          0
+        ],
+        "x": 40,
+        "y": 651
+      },
+      {
+        "name": "negative",
+        "width": 1,
+        "component": {
+          "kind": "register",
+          "initial": 0
+        },
+        "inputs": [
+          46,
+          0
+        ],
+        "x": 225,
+        "y": 35
+      },
+      {
+        "name": "carry",
+        "width": 1,
+        "component": {
+          "kind": "register",
+          "initial": 0
+        },
+        "inputs": [
+          47,
+          0
+        ],
+        "x": 225,
+        "y": 123
+      },
+      {
+        "name": "word_address",
+        "width": 7,
+        "component": {
+          "kind": "slice",
+          "lsb": 1
+        },
+        "inputs": [
+          1
+        ],
+        "x": 225,
+        "y": 211
+      },
+      {
+        "name": "program_rom",
+        "width": 16,
+        "component": {
+          "kind": "rom",
+          "words": [
+            6394,
+            6671,
+            8320,
+            8704,
+            7168,
+            9472,
+            0
+          ]
+        },
+        "inputs": [
+          10
+        ],
+        "x": 225,
+        "y": 299
+      },
+      {
+        "name": "opcode",
+        "width": 5,
+        "component": {
+          "kind": "slice",
+          "lsb": 11
+        },
+        "inputs": [
+          11
+        ],
+        "x": 225,
+        "y": 387
+      },
+      {
+        "name": "destination",
+        "width": 2,
+        "component": {
+          "kind": "slice",
+          "lsb": 9
+        },
+        "inputs": [
+          11
+        ],
+        "x": 225,
+        "y": 475
+      },
+      {
+        "name": "source",
+        "width": 2,
+        "component": {
+          "kind": "slice",
+          "lsb": 7
+        },
+        "inputs": [
+          11
+        ],
+        "x": 225,
+        "y": 563
+      },
+      {
+        "name": "source_low",
+        "width": 1,
+        "component": {
+          "kind": "slice",
+          "lsb": 0
+        },
+        "inputs": [
+          14
+        ],
+        "x": 225,
+        "y": 651
+      },
+      {
+        "name": "source_high",
+        "width": 1,
+        "component": {
+          "kind": "slice",
+          "lsb": 1
+        },
+        "inputs": [
+          14
+        ],
+        "x": 410,
+        "y": 35
+      },
+      {
+        "name": "select_r0_r1",
+        "width": 8,
+        "component": {
+          "kind": "mux"
+        },
+        "inputs": [
+          2,
+          3,
+          15
+        ],
+        "x": 410,
+        "y": 123
+      },
+      {
+        "name": "select_r2_r3",
+        "width": 8,
+        "component": {
+          "kind": "mux"
+        },
+        "inputs": [
+          4,
+          5,
+          15
+        ],
+        "x": 410,
+        "y": 211
+      },
+      {
+        "name": "operand_b",
+        "width": 8,
+        "component": {
+          "kind": "mux"
+        },
+        "inputs": [
+          17,
+          18,
+          16
+        ],
+        "x": 410,
+        "y": 299
+      },
+      {
+        "name": "immediate",
+        "width": 8,
+        "component": {
+          "kind": "slice",
+          "lsb": 0
+        },
+        "inputs": [
+          11
+        ],
+        "x": 410,
+        "y": 387
+      },
+      {
+        "name": "set_opcode",
+        "width": 5,
+        "component": {
+          "kind": "input",
+          "value": "00011"
+        },
+        "inputs": [],
+        "x": 410,
+        "y": 475
+      },
+      {
+        "name": "decode_set",
+        "width": 1,
+        "component": {
+          "kind": "equal"
+        },
+        "inputs": [
+          12,
+          21
+        ],
+        "x": 410,
+        "y": 563
+      },
+      {
+        "name": "add_opcode",
+        "width": 5,
+        "component": {
+          "kind": "input",
+          "value": "00100"
+        },
+        "inputs": [],
+        "x": 410,
+        "y": 651
+      },
+      {
+        "name": "decode_add",
+        "width": 1,
+        "component": {
+          "kind": "equal"
+        },
+        "inputs": [
+          12,
+          23
+        ],
+        "x": 595,
+        "y": 35
+      },
+      {
+        "name": "halt_opcode",
+        "width": 5,
+        "component": {
+          "kind": "input",
+          "value": "00000"
+        },
+        "inputs": [],
+        "x": 595,
+        "y": 123
+      },
+      {
+        "name": "decode_halt",
+        "width": 1,
+        "component": {
+          "kind": "equal"
+        },
+        "inputs": [
+          12,
+          25
+        ],
+        "x": 595,
+        "y": 211
+      },
+      {
+        "name": "latch_halt",
+        "width": 1,
+        "component": {
+          "kind": "or"
+        },
+        "inputs": [
+          6,
+          26
+        ],
+        "x": 595,
+        "y": 299
+      },
+      {
+        "name": "two",
+        "width": 8,
+        "component": {
+          "kind": "input",
+          "value": "00000010"
+        },
+        "inputs": [],
+        "x": 595,
+        "y": 387
+      },
+      {
+        "name": "pc_plus_two",
+        "width": 8,
+        "component": {
+          "kind": "add"
+        },
+        "inputs": [
+          1,
+          28
+        ],
+        "x": 595,
+        "y": 475
+      },
+      {
+        "name": "pc_next",
+        "width": 8,
+        "component": {
+          "kind": "mux"
+        },
+        "inputs": [
+          29,
+          1,
+          6
+        ],
+        "x": 595,
+        "y": 563
+      },
+      {
+        "name": "running",
+        "width": 1,
+        "component": {
+          "kind": "not"
+        },
+        "inputs": [
+          6
+        ],
+        "x": 595,
+        "y": 651
+      },
+      {
+        "name": "write_instruction",
+        "width": 1,
+        "component": {
+          "kind": "or"
+        },
+        "inputs": [
+          22,
+          24
+        ],
+        "x": 780,
+        "y": 35
+      },
+      {
+        "name": "write_allowed",
+        "width": 1,
+        "component": {
+          "kind": "and"
+        },
+        "inputs": [
+          32,
+          31
+        ],
+        "x": 780,
+        "y": 123
+      },
+      {
+        "name": "write_flags",
+        "width": 1,
+        "component": {
+          "kind": "and"
+        },
+        "inputs": [
+          24,
+          31
+        ],
+        "x": 780,
+        "y": 211
+      },
+      {
+        "name": "dest_low",
+        "width": 1,
+        "component": {
+          "kind": "slice",
+          "lsb": 0
+        },
+        "inputs": [
+          13
+        ],
+        "x": 780,
+        "y": 299
+      },
+      {
+        "name": "dest_high",
+        "width": 1,
+        "component": {
+          "kind": "slice",
+          "lsb": 1
+        },
+        "inputs": [
+          13
+        ],
+        "x": 780,
+        "y": 387
+      },
+      {
+        "name": "select_dest_r0_r1",
+        "width": 8,
+        "component": {
+          "kind": "mux"
+        },
+        "inputs": [
+          2,
+          3,
+          35
+        ],
+        "x": 780,
+        "y": 475
+      },
+      {
+        "name": "select_dest_r2_r3",
+        "width": 8,
+        "component": {
+          "kind": "mux"
+        },
+        "inputs": [
+          4,
+          5,
+          35
+        ],
+        "x": 780,
+        "y": 563
+      },
+      {
+        "name": "operand_a",
+        "width": 8,
+        "component": {
+          "kind": "mux"
+        },
+        "inputs": [
+          37,
+          38,
+          36
+        ],
+        "x": 780,
+        "y": 651
+      },
+      {
+        "name": "alu_sum",
+        "width": 8,
+        "component": {
+          "kind": "add"
+        },
+        "inputs": [
+          39,
+          19
+        ],
+        "x": 965,
+        "y": 35
+      },
+      {
+        "name": "alu_carry",
+        "width": 1,
+        "component": {
+          "kind": "carry"
+        },
+        "inputs": [
+          39,
+          19
+        ],
+        "x": 965,
+        "y": 123
+      },
+      {
+        "name": "alu_negative",
+        "width": 1,
+        "component": {
+          "kind": "slice",
+          "lsb": 7
+        },
+        "inputs": [
+          40
+        ],
+        "x": 965,
+        "y": 211
+      },
+      {
+        "name": "zero_byte",
+        "width": 8,
+        "component": {
+          "kind": "input",
+          "value": "00000000"
+        },
+        "inputs": [],
+        "x": 965,
+        "y": 299
+      },
+      {
+        "name": "alu_zero",
+        "width": 1,
+        "component": {
+          "kind": "equal"
+        },
+        "inputs": [
+          40,
+          43
+        ],
+        "x": 965,
+        "y": 387
+      },
+      {
+        "name": "zero_next",
+        "width": 1,
+        "component": {
+          "kind": "mux"
+        },
+        "inputs": [
+          7,
+          44,
+          34
+        ],
+        "x": 965,
+        "y": 475
+      },
+      {
+        "name": "negative_next",
+        "width": 1,
+        "component": {
+          "kind": "mux"
+        },
+        "inputs": [
+          8,
+          42,
+          34
+        ],
+        "x": 965,
+        "y": 563
+      },
+      {
+        "name": "carry_next",
+        "width": 1,
+        "component": {
+          "kind": "mux"
+        },
+        "inputs": [
+          9,
+          41,
+          34
+        ],
+        "x": 965,
+        "y": 651
+      },
+      {
+        "name": "writeback",
+        "width": 8,
+        "component": {
+          "kind": "mux"
+        },
+        "inputs": [
+          40,
+          20,
+          22
+        ],
+        "x": 1150,
+        "y": 35
+      },
+      {
+        "name": "id_r0",
+        "width": 2,
+        "component": {
+          "kind": "input",
+          "value": "00"
+        },
+        "inputs": [],
+        "x": 1150,
+        "y": 123
+      },
+      {
+        "name": "is_r0",
+        "width": 1,
+        "component": {
+          "kind": "equal"
+        },
+        "inputs": [
+          13,
+          49
+        ],
+        "x": 1150,
+        "y": 211
+      },
+      {
+        "name": "write_r0",
+        "width": 1,
+        "component": {
+          "kind": "and"
+        },
+        "inputs": [
+          33,
+          50
+        ],
+        "x": 1150,
+        "y": 299
+      },
+      {
+        "name": "r0_next",
+        "width": 8,
+        "component": {
+          "kind": "mux"
+        },
+        "inputs": [
+          2,
+          48,
+          51
+        ],
+        "x": 1150,
+        "y": 387
+      },
+      {
+        "name": "id_r1",
+        "width": 2,
+        "component": {
+          "kind": "input",
+          "value": "01"
+        },
+        "inputs": [],
+        "x": 1150,
+        "y": 475
+      },
+      {
+        "name": "is_r1",
+        "width": 1,
+        "component": {
+          "kind": "equal"
+        },
+        "inputs": [
+          13,
+          53
+        ],
+        "x": 1150,
+        "y": 563
+      },
+      {
+        "name": "write_r1",
+        "width": 1,
+        "component": {
+          "kind": "and"
+        },
+        "inputs": [
+          33,
+          54
+        ],
+        "x": 1150,
+        "y": 651
+      },
+      {
+        "name": "r1_next",
+        "width": 8,
+        "component": {
+          "kind": "mux"
+        },
+        "inputs": [
+          3,
+          48,
+          55
+        ],
+        "x": 1335,
+        "y": 35
+      },
+      {
+        "name": "id_r2",
+        "width": 2,
+        "component": {
+          "kind": "input",
+          "value": "10"
+        },
+        "inputs": [],
+        "x": 1335,
+        "y": 123
+      },
+      {
+        "name": "is_r2",
+        "width": 1,
+        "component": {
+          "kind": "equal"
+        },
+        "inputs": [
+          13,
+          57
+        ],
+        "x": 1335,
+        "y": 211
+      },
+      {
+        "name": "write_r2",
+        "width": 1,
+        "component": {
+          "kind": "and"
+        },
+        "inputs": [
+          33,
+          58
+        ],
+        "x": 1335,
+        "y": 299
+      },
+      {
+        "name": "r2_next",
+        "width": 8,
+        "component": {
+          "kind": "mux"
+        },
+        "inputs": [
+          4,
+          48,
+          59
+        ],
+        "x": 1335,
+        "y": 387
+      },
+      {
+        "name": "id_r3",
+        "width": 2,
+        "component": {
+          "kind": "input",
+          "value": "11"
+        },
+        "inputs": [],
+        "x": 1335,
+        "y": 475
+      },
+      {
+        "name": "is_r3",
+        "width": 1,
+        "component": {
+          "kind": "equal"
+        },
+        "inputs": [
+          13,
+          61
+        ],
+        "x": 1335,
+        "y": 563
+      },
+      {
+        "name": "write_r3",
+        "width": 1,
+        "component": {
+          "kind": "and"
+        },
+        "inputs": [
+          33,
+          62
+        ],
+        "x": 1335,
+        "y": 651
+      },
+      {
+        "name": "r3_next",
+        "width": 8,
+        "component": {
+          "kind": "mux"
+        },
+        "inputs": [
+          5,
+          48,
+          63
+        ],
+        "x": 1520,
+        "y": 35
+      }
+    ]
+  }
+}

@@ -1,0 +1,13 @@
+# Circuit simulation model
+
+Signals are vectors of 1 to 32 digits, most significant first. Each digit is `0`, `1`, unknown `x`, or high impedance `z`. Gates apply four-state truth tables. For example, AND with a known zero resolves to zero even if the other input is unknown. Arithmetic and comparison require known inputs. An explicit resolver ignores high impedance drivers, records a conflict where known drives disagree, and yields unknown for contested bits. A bus is one wire carrying a vector. A slice extracts a contiguous field.
+
+Scheduling is deterministic. The engine builds a topological order of combinational dependencies and rejects cycles. Each tick first propagates clock and combinational changes. Sequential elements detect a known low-to-high transition, sample the settled inputs, and publish their next states together. A second propagation settles affected outputs. Changes schedule dependent nodes through a rank-ordered queue. Observed transitions describe settled samples and include the initial value of every top-level node. Internal nested nodes can be exposed by routing their value to the subcircuit output. Hierarchical contention includes the expanded node name.
+
+A clock starts low and is high when `tick % period >= floor(period / 2)`. A register optionally has a known initial value. A counter starts at zero and wraps. RAM has sparse, initially unknown cells, enables writes on rising edges, and publishes the cell read at the current address before the sequential commit. A same-address write is visible as the current read value for that tick. ROM reads settle combinationally. The demultiplexer component is a single gated branch, with the other branch obtained by inverting the select signal.
+
+Validation caps the flattened circuit at 4096 nodes and subcircuit depth at eight. Simulation allows up to 100,000 ticks and five million node-ticks. An event cap bounds both output and flattened internal work, with a separate cap for contention records. Desktop and CLI requests use a 100,000-event cap. VCD uses a deterministic 1 ns timescale convention for one abstract tick.
+
+## Instruction recording
+
+The machine maintains a bounded ring of instruction trace entries and reversible state deltas. Each delta restores PC, SP, flags, halt state, at most one register, changed bytes and the virtual console length. Breakpoints stop before execution. Data watchpoints stop after a successful read or write and cover the bytes accessed. Instruction fetches are excluded from data watchpoints. Reversing a step removes it from the current history. Re-execution with the same starting state and program is deterministic.

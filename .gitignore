@@ -1,0 +1,8 @@
+/target/
+/desktop/ui/node_modules/
+/desktop/ui/dist/
+/desktop/ui/test-results/
+/desktop/ui/playwright-report/
+/desktop/gen/schemas/
+*.bin
+*.vcd

@@ -1,0 +1,435 @@
+{
+  "version": 1,
+  "name": "MICRO-8",
+  "architecture": {
+    "version": 1,
+    "name": "MICRO-8",
+    "data_bits": 8,
+    "address_bits": 8,
+    "registers": 4,
+    "instruction_bytes": 2,
+    "endian": "little",
+    "entry": 0,
+    "stack": null,
+    "console": null,
+    "instructions": [
+      {
+        "mnemonic": "HALT",
+        "op": "halt",
+        "opcode": 0,
+        "mask": 65535,
+        "fields": [],
+        "update_flags": false
+      },
+      {
+        "mnemonic": "NOP",
+        "op": "nop",
+        "opcode": 2048,
+        "mask": 65535,
+        "fields": [],
+        "update_flags": false
+      },
+      {
+        "mnemonic": "MOV",
+        "op": "mov",
+        "opcode": 4096,
+        "mask": 63615,
+        "fields": [
+          {
+            "lsb": 9,
+            "bits": 2,
+            "kind": "register"
+          },
+          {
+            "lsb": 7,
+            "bits": 2,
+            "kind": "register"
+          }
+        ],
+        "update_flags": false
+      },
+      {
+        "mnemonic": "SET",
+        "op": "imm",
+        "opcode": 6144,
+        "mask": 63488,
+        "fields": [
+          {
+            "lsb": 9,
+            "bits": 2,
+            "kind": "register"
+          },
+          {
+            "lsb": 0,
+            "bits": 9,
+            "kind": "unsigned"
+          }
+        ],
+        "update_flags": false
+      },
+      {
+        "mnemonic": "ADD",
+        "op": "add",
+        "opcode": 8192,
+        "mask": 63615,
+        "fields": [
+          {
+            "lsb": 9,
+            "bits": 2,
+            "kind": "register"
+          },
+          {
+            "lsb": 7,
+            "bits": 2,
+            "kind": "register"
+          }
+        ],
+        "update_flags": true
+      },
+      {
+        "mnemonic": "SUB",
+        "op": "sub",
+        "opcode": 10240,
+        "mask": 63615,
+        "fields": [
+          {
+            "lsb": 9,
+            "bits": 2,
+            "kind": "register"
+          },
+          {
+            "lsb": 7,
+            "bits": 2,
+            "kind": "register"
+          }
+        ],
+        "update_flags": true
+      },
+      {
+        "mnemonic": "AND",
+        "op": "and",
+        "opcode": 12288,
+        "mask": 63615,
+        "fields": [
+          {
+            "lsb": 9,
+            "bits": 2,
+            "kind": "register"
+          },
+          {
+            "lsb": 7,
+            "bits": 2,
+            "kind": "register"
+          }
+        ],
+        "update_flags": true
+      },
+      {
+        "mnemonic": "OR",
+        "op": "or",
+        "opcode": 14336,
+        "mask": 63615,
+        "fields": [
+          {
+            "lsb": 9,
+            "bits": 2,
+            "kind": "register"
+          },
+          {
+            "lsb": 7,
+            "bits": 2,
+            "kind": "register"
+          }
+        ],
+        "update_flags": true
+      },
+      {
+        "mnemonic": "XOR",
+        "op": "xor",
+        "opcode": 16384,
+        "mask": 63615,
+        "fields": [
+          {
+            "lsb": 9,
+            "bits": 2,
+            "kind": "register"
+          },
+          {
+            "lsb": 7,
+            "bits": 2,
+            "kind": "register"
+          }
+        ],
+        "update_flags": true
+      },
+      {
+        "mnemonic": "SHL",
+        "op": "shl",
+        "opcode": 18432,
+        "mask": 63615,
+        "fields": [
+          {
+            "lsb": 9,
+            "bits": 2,
+            "kind": "register"
+          },
+          {
+            "lsb": 7,
+            "bits": 2,
+            "kind": "register"
+          }
+        ],
+        "update_flags": true
+      },
+      {
+        "mnemonic": "SHR",
+        "op": "shr",
+        "opcode": 20480,
+        "mask": 63615,
+        "fields": [
+          {
+            "lsb": 9,
+            "bits": 2,
+            "kind": "register"
+          },
+          {
+            "lsb": 7,
+            "bits": 2,
+            "kind": "register"
+          }
+        ],
+        "update_flags": true
+      },
+      {
+        "mnemonic": "CMP",
+        "op": "cmp",
+        "opcode": 22528,
+        "mask": 63615,
+        "fields": [
+          {
+            "lsb": 9,
+            "bits": 2,
+            "kind": "register"
+          },
+          {
+            "lsb": 7,
+            "bits": 2,
+            "kind": "register"
+          }
+        ],
+        "update_flags": true
+      },
+      {
+        "mnemonic": "LD",
+        "op": "load",
+        "opcode": 24576,
+        "mask": 63488,
+        "fields": [
+          {
+            "lsb": 9,
+            "bits": 2,
+            "kind": "register"
+          },
+          {
+            "lsb": 0,
+            "bits": 9,
+            "kind": "unsigned"
+          }
+        ],
+        "update_flags": false
+      },
+      {
+        "mnemonic": "ST",
+        "op": "store",
+        "opcode": 26624,
+        "mask": 63488,
+        "fields": [
+          {
+            "lsb": 9,
+            "bits": 2,
+            "kind": "register"
+          },
+          {
+            "lsb": 0,
+            "bits": 9,
+            "kind": "unsigned"
+          }
+        ],
+        "update_flags": false
+      },
+      {
+        "mnemonic": "LDR",
+        "op": "load_indirect",
+        "opcode": 28672,
+        "mask": 63615,
+        "fields": [
+          {
+            "lsb": 9,
+            "bits": 2,
+            "kind": "register"
+          },
+          {
+            "lsb": 7,
+            "bits": 2,
+            "kind": "register"
+          }
+        ],
+        "update_flags": false
+      },
+      {
+        "mnemonic": "STR",
+        "op": "store_indirect",
+        "opcode": 30720,
+        "mask": 63615,
+        "fields": [
+          {
+            "lsb": 9,
+            "bits": 2,
+            "kind": "register"
+          },
+          {
+            "lsb": 7,
+            "bits": 2,
+            "kind": "register"
+          }
+        ],
+        "update_flags": false
+      },
+      {
+        "mnemonic": "JMP",
+        "op": "jump",
+        "opcode": 32768,
+        "mask": 63488,
+        "fields": [
+          {
+            "lsb": 0,
+            "bits": 11,
+            "kind": "unsigned"
+          }
+        ],
+        "update_flags": false
+      },
+      {
+        "mnemonic": "JZ",
+        "op": "jz",
+        "opcode": 34816,
+        "mask": 63488,
+        "fields": [
+          {
+            "lsb": 0,
+            "bits": 11,
+            "kind": "unsigned"
+          }
+        ],
+        "update_flags": false
+      },
+      {
+        "mnemonic": "JNZ",
+        "op": "jnz",
+        "opcode": 36864,
+        "mask": 63488,
+        "fields": [
+          {
+            "lsb": 0,
+            "bits": 11,
+            "kind": "unsigned"
+          }
+        ],
+        "update_flags": false
+      },
+      {
+        "mnemonic": "JC",
+        "op": "jcarry",
+        "opcode": 38912,
+        "mask": 63488,
+        "fields": [
+          {
+            "lsb": 0,
+            "bits": 11,
+            "kind": "unsigned"
+          }
+        ],
+        "update_flags": false
+      }
+    ]
+  },
+  "source": "; Fibonacci, seven iterations\nSET r0, 0\nSET r1, 1\nSET r2, 7\nSET r3, 1\nloop:\nADD r1, r0\nSUB r0, r1\nSET r3, 0\nSUB r3, r0\nMOV r0, r3\nSET r3, 1\nSUB r2, r3\nJNZ loop\nST r1, 0xf0\nHALT\n",
+  "circuit": {
+    "version": 1,
+    "nodes": [
+      {
+        "name": "clock",
+        "width": 1,
+        "component": {
+          "kind": "clock",
+          "period": 2
+        },
+        "inputs": [],
+        "x": 60,
+        "y": 60
+      },
+      {
+        "name": "counter",
+        "width": 8,
+        "component": {
+          "kind": "counter"
+        },
+        "inputs": [
+          0
+        ],
+        "x": 255,
+        "y": 60
+      },
+      {
+        "name": "increment",
+        "width": 8,
+        "component": {
+          "kind": "input",
+          "value": "00000001"
+        },
+        "inputs": [],
+        "x": 255,
+        "y": 180
+      },
+      {
+        "name": "alu_sum",
+        "width": 8,
+        "component": {
+          "kind": "add"
+        },
+        "inputs": [
+          1,
+          2
+        ],
+        "x": 455,
+        "y": 85
+      },
+      {
+        "name": "carry",
+        "width": 1,
+        "component": {
+          "kind": "carry"
+        },
+        "inputs": [
+          1,
+          2
+        ],
+        "x": 455,
+        "y": 200
+      },
+      {
+        "name": "sample",
+        "width": 8,
+        "component": {
+          "kind": "register"
+        },
+        "inputs": [
+          3,
+          0
+        ],
+        "x": 650,
+        "y": 85
+      }
+    ]
+  }
+}
