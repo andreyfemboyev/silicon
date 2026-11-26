@@ -3,9 +3,18 @@ on:
   workflow_dispatch:
   push:
     tags: ["v*"]
+    branches: [main]
+    paths:
+      - '.github/workflows/release.yml'
+      - 'docs/RELEASE-v0.1.0-alpha.md'
 permissions:
   contents: read
+concurrency:
+  group: silicon-release-${{ github.ref }}
+  cancel-in-progress: false
 jobs:
+  verify:
+    uses: ./.github/workflows/ci.yml
   package:
     strategy:
       fail-fast: false
@@ -72,3 +81,48 @@ jobs:
             release/*.tar.gz
             release/SHA256SUMS.txt
           if-no-files-found: error
+
+  publish:
+    needs: [verify, package]
+    if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: silicon-*
+          path: candidates
+      - name: Verify and collect release assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir published
+          for platform in linux-x86_64 windows-x86_64; do
+            candidate="candidates/silicon-$platform"
+            (cd "$candidate" && tr -d '\r' < SHA256SUMS.txt > checksums && sha256sum -c checksums)
+            find "$candidate" -maxdepth 1 -type f ! -name SHA256SUMS.txt ! -name checksums -exec cp -n {} published/ \;
+          done
+          test -s published/silicon-cli-linux-x86_64.tar.gz
+          test -s published/silicon-cli-windows-x86_64.zip
+          compgen -G 'published/*.deb' >/dev/null
+          compgen -G 'published/*.AppImage' >/dev/null
+          compgen -G 'published/*.exe' >/dev/null
+          (cd published && sha256sum -- * > SHA256SUMS.txt)
+      - name: Publish verified alpha
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          TAG=v0.1.0-alpha
+          if [[ "$GITHUB_REF" == refs/tags/* && "$GITHUB_REF_NAME" != "$TAG" ]]; then
+            echo "This workflow's release notes are for $TAG only."
+            exit 1
+          fi
+          if gh release view "$TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            echo "Release already exists; refusing to overwrite it."
+            exit 1
+          fi
+          gh release create "$TAG" --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" --prerelease --title "SILICON $TAG" --notes-file docs/RELEASE-v0.1.0-alpha.md published/*

@@ -2,6 +2,10 @@
 
 **Design. Simulate. Execute.**
 
+[![CI](https://github.com/andreyfemboyev/silicon/actions/workflows/ci.yml/badge.svg)](https://github.com/andreyfemboyev/silicon/actions/workflows/ci.yml) [![MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
+[Downloads and releases](https://github.com/andreyfemboyev/silicon/releases) · [Release notes](docs/RELEASE-v0.1.0-alpha.md)
+
 SILICON is an MIT-licensed, offline-first workbench for digital logic and custom processor architectures. The Tauri 2 desktop app provides a schematic editor, an ISA workshop, a Monaco assembly editor, an instruction debugger, and a signal analyzer. The Rust CLI uses the same engines and runs without Node.js, Tauri, or a desktop environment.
 
 ## Run the first project
